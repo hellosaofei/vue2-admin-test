@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="input" />
+    <ul>
+      <li style="height: 400px"></li>
+      <li style="height: 400px"></li>
+      <li style="height: 400px"></li>
+      <li style="height: 400px"></li>
+      <li style="height: 400px"></li>
+    </ul>
+    <script>
+      document.querySelector("#input").addEventListener(
+        "input",
+        throttle(() => {
+          console.log(this);
+        }),
+        false
+      );
+      //   window.onscroll = throttle(() => {
+      //     console.log(111);
+      //   });
+      //   document.querySelector("window").addEventListener(
+      //     "scroll",
+      //     throttle(() => {
+      //       console.log(this);
+      //     })
+      //   );
+      function throttle(fn, delay = 500) {
+        let flag = true;
+        return function () {
+          if (flag) {
+            setTimeout(() => {
+              fn.call(this);
+              flag = true;
+            }, delay);
+          }
+          flag = false;
+        };
+      }
+    </script>
+  </body>
+</html>
